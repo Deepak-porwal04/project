@@ -30,7 +30,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# env_file_path = # path of env.yaml file
+env_file_path = 'env.yaml'
 # set_env_variable(env_file_path)
 
 @app.get("/",tags=["authentication"])
@@ -57,6 +57,9 @@ async def predict_route():
         # get data from user as csv file
         # convert csv to df
         df = None
+        # cn upload train df
+        # can calculate dataa drift if it is significant then trigger the training
+        # otherwise trigger a email to data science team, data drift detected
         model_resolver = ModelResolver(model_dir=SAVED_MODEL_DIR)
         if not model_resolver.is_model_exists():
             return Response("Model is not available")
@@ -83,10 +86,9 @@ def main():
 
 if __name__ == '__main__':
     try:
-        main()
-        # app_run(app, host=APP_HOST, port=APP_PORT)
-        # env_file_path = # path of env.yaml file cntaining env variables
-        # set_env_variable(env_file_path) 
+        # main()
+        set_env_variable(env_file_path)
+        app_run(app, host=APP_HOST, port=APP_PORT)
         # training_pipeline = TrainPipeline()
         # training_pipeline.run_pipeline()
     except Exception as e:
