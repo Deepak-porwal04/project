@@ -1,6 +1,0 @@
-aws cli k place pr boto3
-sensor -> cloud_storae -> s3_sync.py me comman ki jgh boto3 implement krna h
-    -> constant           ----- s3_bucket.py match the bucket name with constants
-
-env vars set
-    
